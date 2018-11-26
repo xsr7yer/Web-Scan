@@ -1,5 +1,5 @@
 PyMySQL==0.9.2
-requests==2.19.1
+requests
 urllib3==1.23
 pymongo==3.7.2
 IPy==0.83
