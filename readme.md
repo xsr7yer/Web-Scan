@@ -1,4 +1,4 @@
-#Web-Scan
+# Web-Scan
 
 web扫描工具，目前支持的模块，以后学了什么新东西也对其进行更新
 
@@ -28,7 +28,7 @@ web扫描工具，目前支持的模块，以后学了什么新东西也对其�
 
 ` python .\web-framework.py -u test.com`
 
-![1](.\1.gif)
+![1](1.gif)
 
 2：IP扫描
 
@@ -36,7 +36,7 @@ web扫描工具，目前支持的模块，以后学了什么新东西也对其�
 
 `python .\web-framework.py -p 172.16.10.0/24`
 
-![1](.\1.png)
+![1](1.png)
 
 
 
