@@ -17,6 +17,8 @@ web扫描工具，目前支持的模块，以后学了什么新东西也对其�
 - tools
   - backfile（网站备份文件扫描）
   - unauthorized（服务器未授权端口扫描，目前支持MySQL ，Ftp，Redis，MongoDB，Memcached，Jenkins，Elasticsearch，Hadoop （50070），Hadoop（8088-RCE），CouchDB ，Docker-Api,Zookeeper )
+- cms
+  - phpcms2008 （phpcms2008 type.php远程命令执行）
 
 # USE
 
@@ -36,22 +38,12 @@ web扫描工具，目前支持的模块，以后学了什么新东西也对其�
 
 `python .\web-framework.py -p 172.16.10.0/24`
 
-![1](1.png)
 
-
-
-可以命令执行的漏洞可以在ceye.io看到回显，无法直接收到回显的漏洞，脚本显示存在需要手动进行利用一些利用的方法写在script的注释中了。
+可以命令执行的漏洞可以在ceye.io看到回显，无法直接收到回显的漏洞，脚本显示存在需要进行手动利用。一些利用的方法写在script文件下对应的POC中了。
 
 # ENV
 
 version: python3
-
-PyMySQL==0.9.2
-requests==2.19.1
-urllib3==1.23
-pymongo==3.7.2
-IPy==0.83
-asana_kazoo==2.0.8dev
 
 # 自定义POC
 
@@ -79,11 +71,4 @@ def poc(url): #传入的参赛为访问的url
 	return port_info
 ```
 
-在`\lib\core\monitor.py`定义了几个过滤器，主要是检测发送poc时端口是否开放，以及需要访问的url是否存在。具体的可以看看源代码。
-
-
-
-
-
-
-
+在`\lib\core\monitor.py`定义了几个过滤器，主要是检测发送poc时端口是否开放，以及需要访问的url是否存在。具体的可以看`\core\monitor.py`。
